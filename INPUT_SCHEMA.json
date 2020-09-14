@@ -2,7 +2,7 @@
     "title": "Content checker input",
     "type": "object",
     "schemaVersion": 1,
-    "required": ["url", "contentSelector", "sendNotificationTo"],
+    "required": ["url", "contentSelector", "sendNotificationTo", "pushbulletApiToken", "pushbulletDevices"],
     "properties": {
         "url": {
             "title": "URL to check",
@@ -25,12 +25,19 @@
             "editor": "textfield",
             "prefill": ".change-log ul:nth-of-type(1)"
         },
-        "sendNotificationTo": {
-            "title": "Email address",
+        "pushbulletApiToken": {
+            "title": "Pushbullet API Token",
             "type": "string",
-            "description": "Email address where you want to get notification",
+            "description": "Enter the Pushbullet API Access token (https://pushbullet.com/#settings/account)",
             "editor": "textfield",
-            "prefill": "info@apify.com"
+            "prefill": ""
+        },
+        "pushbulletDevices": {
+            "title": "Pushbullet devices",
+            "type": "string",
+            "description": "Enter the devices that you want to push to separated by a SPACE (e.g. uswaH67Iea1fMf12 ujwk34IerBdJA0yG yrswaH67dxAd0gbA)",
+            "editor": "textfield",
+            "prefill": ""
         }
     }
 }

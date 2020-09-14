@@ -1,4 +1,5 @@
 const Apify = require('apify');
+const Pushbullet = require('pushbullet');
 
 // returns screenshot of a given element
 async function screenshotDOMElement(page, selector, padding = 0) {
@@ -96,13 +97,28 @@ Apify.main(async () => {
         } else {
             console.log('Content changed');
             
+            let pusher = new PushBullet(input.pushbulletApiToken);
+
+            // Send notification
+            // Get the devices
+            let pushbulletDevices = input.pushbulletDevices.split(" ");
+
+            let noteText = 'URL: ' + input.url + '\n' +
+                    'Current data: ' + content + '\n';
+
+            console.log('Sending to pushBullet');
+            // For each device, send a note
+            pushbulletDevices.forEach( function (device) {
+                console.log('Pushing to device: ' . device);
+                pusher.note(device, "Apify content checker - page changed", noteText, function(err, res){});
+            });
+
             //send mail
-            console.log('Sending mail...');
+            /*
             await Apify.call('apify/send-mail', {
                 to: input.sendNotificationTo,
                 subject: 'Apify content checker - page changed!',
                 text: 'URL: ' + input.url + '\n' +
-                    'Previous data: ' + previousData + '\n' +
                     'Current data: ' + content + '\n',
                 
                 attachments: [
@@ -116,7 +132,7 @@ Apify.main(async () => {
                     }
                 ]
                 
-            });
+            });*/
         }
     }
     
