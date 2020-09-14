@@ -31,7 +31,7 @@ Apify.main(async () => {
     const store = await Apify.openKeyValueStore(storeName);
     
     // check inputs
-    if (!input || !input.url || !input.contentSelector || !input.sendNotificationTo) 
+    if (!input || !input.url || !input.contentSelector) 
     throw new Error('Invalid input, must be a JSON object with the ' + 
         '"url", "contentSelector", "screenshotSelector" and "sendNotificationTo" field!');
 
