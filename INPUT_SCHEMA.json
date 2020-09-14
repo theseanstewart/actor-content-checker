@@ -2,7 +2,7 @@
     "title": "Content checker input",
     "type": "object",
     "schemaVersion": 1,
-    "required": ["url", "contentSelector", "sendNotificationTo", "pushbulletApiToken", "pushbulletDevices"],
+    "required": ["url", "contentSelector", "pushbulletApiToken", "pushbulletDevices"],
     "properties": {
         "url": {
             "title": "URL to check",
